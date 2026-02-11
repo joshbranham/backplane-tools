@@ -54,7 +54,8 @@ Quick reference guide
 Install backplane-tools with the following command:
 
 ```shell
-go install github.com/openshift/backplane-tools@latest; backplane-tools install all```
+go install github.com/openshift/backplane-tools@latest; backplane-tools install all
+```
 
 Follow instructions on screen to add tools to `PATH`.
 
