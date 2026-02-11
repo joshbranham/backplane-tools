@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/openshift/backplane-tools/cmd/cleanup"
 	"github.com/openshift/backplane-tools/cmd/install"
 	"github.com/openshift/backplane-tools/cmd/list"
 	"github.com/openshift/backplane-tools/cmd/remove"
@@ -27,6 +28,7 @@ func init() {
 	cmd.AddCommand(list.Cmd())
 	cmd.AddCommand(remove.Cmd())
 	cmd.AddCommand(upgrade.Cmd())
+	cmd.AddCommand(cleanup.Cmd())
 }
 
 func main() {
