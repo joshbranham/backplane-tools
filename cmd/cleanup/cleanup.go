@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// Cmd returns the Command used to invoke the upgrade logic
+// Cmd returns the Command used to invoke the cleanup logic
 func Cmd() *cobra.Command {
 	toolNames := tools.Names()
 	cleanupCmd := &cobra.Command{
