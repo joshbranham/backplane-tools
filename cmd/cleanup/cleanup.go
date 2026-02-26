@@ -26,7 +26,7 @@ func Cmd() *cobra.Command {
 	return cleanupCmd
 }
 
-// run cleanup the tool(s) specified by the provided positional args
+// Cleanup cleans up older versions of the tool(s) specified by the provided positional args
 func Cleanup(args []string) error {
 	var listTools []tools.Tool
 	if len(args) == 0 || utils.Contains(args, "all") {
