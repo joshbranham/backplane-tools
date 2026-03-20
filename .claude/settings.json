@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); if [ \"$(echo \"$INPUT\" | jq -r \".stop_hook_active\")\" = \"true\" ]; then exit 0; fi; cd \"$CLAUDE_PROJECT_DIR\" && make vet fmt build 2>&1 || (echo \"make vet fmt build failed — please fix before stopping.\" >&2; exit 2)'"
+          }
+        ]
+      }
+    ]
+  }
+}
