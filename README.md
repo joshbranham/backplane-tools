@@ -25,11 +25,14 @@ backplane-tools offers an easy solution to install, remove, and upgrade a useful
   - [Upgrade a specific thing](#upgrade-a-specific-thing)
   - [Remove everything](#remove-everything)
   - [Remove a specific thing](#remove-a-specific-thing)
+  - [Cleanup everything](#cleanup-everything)
+  - [Cleanup a specific thing](#cleanup-a-specific-thing)
 - [Design](#design)
   - [Directory Structure](#directory-structure)
   - [Installing](#installing)
   - [Upgrading](#upgrading)
   - [Removing](#removing)
+  - [Cleaning up](#cleaning-up)
 <!-- tocstop -->
 
 ## Tools
@@ -155,6 +158,16 @@ backplane-tools remove all
 backplane-tools remove <tool name>
 ```
 
+### Cleanup everything
+```shell
+backplane-tools cleanup all
+```
+
+### Cleanup a specific thing
+```shell
+backplane-tools cleanup <tool name>
+```
+
 ## Design
 
 backplane-tools strives to be simplistic and non-invasive; it should not conflict with currently installed programs, nor should it require extensive research before operating.
@@ -215,3 +228,10 @@ Users are able to remove individual tools or completely remove all files and dat
 `backplane-tools remove <toolA> <toolB> ...` allows users to remove a specific set of tools from their system. This is done by removing the tool-specific directory at `$HOME/.local/bin/backplane/<tool name>`, as well as the tool's linked executable in `$HOME/.local/bin/backplane/latest/`.
 
 `backplane-tools remove all` allows users to remove everything managed by backplane-tools. This is done by completely removing `$HOME/.bin/local/backplane/`. Subsequent calls to `backplane-tools install` will cause the directory structure to be recreated from scratch.
+
+### Cleaning up
+Users are able to remove older versions of individual or all tools managed by backplane-tools.
+
+`backplane-tools cleanup <toolA> <toolB> ...` allows users to cleanup older versions of a specific set of tools from their system. This is done by removing the tool-specific directory at `$HOME/.local/bin/backplane/<tool name>/<old_version>`, keeping only the latest installed version as well as the tool's linked executable in `$HOME/.local/bin/backplane/latest/`.
+
+`backplane-tools cleanup all` allows users to remove older versions of everything managed by backplane-tools. This is done by removing `$HOME/.bin/local/backplane/<tool name>/<old_version>`.

@@ -51,6 +51,9 @@ type Tool interface {
 
 	// LatestVersion gets the latest version available on repo
 	LatestVersion() (string, error)
+
+	// Cleanup removes all previous versions of an installed tool
+	Cleanup() (string, error)
 }
 
 var toolMap map[string]Tool
@@ -205,4 +208,19 @@ func ListInstalled() ([]Tool, error) {
 		}
 	}
 	return installedTools, nil
+}
+
+func Cleanup(tools []Tool) error {
+	for _, tool := range tools {
+		fmt.Println()
+		fmt.Printf("Removing %s\n", tool.Name())
+		msg, err := tool.Cleanup()
+		if err != nil {
+			fmt.Printf("Encountered error while cleaning up %s: %v\n", tool.Name(), err)
+			fmt.Println("Skipping...")
+		} else {
+			fmt.Printf("Successfully cleaned up %s: %s\n", tool.Name(), msg)
+		}
+	}
+	return nil
 }

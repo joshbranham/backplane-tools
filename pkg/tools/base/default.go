@@ -126,3 +126,46 @@ func (t *Default) InstalledVersion() (string, error) {
 	}
 	return t.installedVersion, nil
 }
+
+// Cleanup removes all previous versions of an installed tool except the currently linked version
+func (t *Default) Cleanup() (string, error) {
+	toolDir := t.ToolDir()
+
+	// Get the currently installed version (the one linked in latest/)
+	currentVersion, err := t.InstalledVersion()
+	if err != nil {
+		return "", fmt.Errorf("failed to get installed version: %w", err)
+	}
+
+	// Read all version directories in the tool directory
+	entries, err := os.ReadDir(toolDir)
+	if err != nil {
+		return "", fmt.Errorf("failed to read tool directory %s: %w", toolDir, err)
+	}
+
+	removedVersions := []string{}
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			continue
+		}
+
+		// Skip the current version
+		if entry.Name() == currentVersion {
+			continue
+		}
+
+		// Remove old version directory
+		versionPath := filepath.Join(toolDir, entry.Name())
+		err = os.RemoveAll(versionPath)
+		if err != nil {
+			return strings.Join(removedVersions, ", "), fmt.Errorf("failed to remove version %s: %w", entry.Name(), err)
+		}
+		removedVersions = append(removedVersions, entry.Name())
+	}
+
+	if len(removedVersions) == 0 {
+		return "no old versions found", nil
+	}
+
+	return fmt.Sprintf("removed versions: %s", strings.Join(removedVersions, ", ")), nil
+}
