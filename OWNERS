@@ -5,7 +5,6 @@ reviewers:
   - tnierman
   - clcollins
   - samanthajayasinghe
-  - T0MASD
   - dustman9000
 approvers:
   - boranx
@@ -14,7 +13,6 @@ approvers:
   - tnierman
   - clcollins
   - samanthajayasinghe
-  - T0MASD
   - dustman9000
 maintainers:
   - boranx
@@ -23,5 +21,4 @@ maintainers:
   - tnierman
   - clcollins
   - samanthajayasinghe
-  - T0MASD
   - dustman9000

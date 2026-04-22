@@ -172,7 +172,7 @@ else
   fi
 fi
 `)
-	builder.WriteString(fmt.Sprintf("exec %s \"$@\"\n", awsPath))
+	fmt.Fprintf(&builder, "exec %s \"$@\"\n", awsPath)
 
 	input := builder.String()
 	awsWrapperPath := filepath.Join(versionedDir, "aws")

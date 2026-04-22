@@ -1,8 +1,6 @@
 module github.com/openshift/backplane-tools
 
-go 1.21
-
-toolchain go1.22.1
+go 1.25
 
 require (
 	cloud.google.com/go/storage v1.36.0

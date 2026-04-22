@@ -44,7 +44,7 @@ func ContainsAny(str string, terms []string) bool {
 // Keys returns a slice containing the keys of the provided map.
 // Order is preserved
 func Keys[T, U comparable](myMap map[T]U) []T {
-	keys := []T{}
+	keys := make([]T, 0, len(myMap))
 	for k := range myMap {
 		keys = append(keys, k)
 	}

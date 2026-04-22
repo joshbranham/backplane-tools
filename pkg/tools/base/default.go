@@ -167,5 +167,5 @@ func (t *Default) Cleanup() (string, error) {
 		return "no old versions found", nil
 	}
 
-	return fmt.Sprintf("removed versions: %s", strings.Join(removedVersions, ", ")), nil
+	return "removed versions: " + strings.Join(removedVersions, ", "), nil
 }

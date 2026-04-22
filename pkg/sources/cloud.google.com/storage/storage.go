@@ -130,7 +130,7 @@ func (s *Source) FindObjectsForArchAndOS(objs []*storage.ObjectAttrs) []*storage
 }
 
 func (s *Source) FindLatest(objs []*storage.ObjectAttrs) *storage.ObjectAttrs {
-	names := []string{}
+	names := make([]string, 0, len(objs))
 	for _, obj := range objs {
 		names = append(names, obj.Name)
 	}
