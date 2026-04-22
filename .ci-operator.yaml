@@ -1,5 +1,4 @@
-build_root:
-  image_stream_tag:
-    name: release
-    namespace: openshift
-    tag: rhel-9-release-golang-1.25-openshift-4.19
+build_root_image:
+  name: release
+  namespace: openshift
+  tag: rhel-9-release-golang-1.25-openshift-4.19
